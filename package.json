@@ -1,0 +1,19 @@
+{
+  "name": "scripts_per_state",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "ava": "^3.15.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "firebase-admin": "^9.3.0",
+    "fs": "*"
+  },
+  "private": true
+}
