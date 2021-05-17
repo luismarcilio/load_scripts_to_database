@@ -9,7 +9,7 @@ export class SaveConfiguration {
 
   async save(configuration: Configuration): Promise<void> {
     await this.firestore.collection("CONFIG").doc(configuration.state).set({
-      initialUrl: configuration.initialUrl,
+      initialURL: configuration.initialURL,
       javascript: configuration.javascript,
     });
   }

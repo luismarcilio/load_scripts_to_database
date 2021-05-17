@@ -1,5 +1,5 @@
 interface Configuration {
     state: string;
-    initialUrl: string;
+    initialURL: string;
     javascript: string;
 }
