@@ -41,4 +41,4 @@ const jsFunctions = () => {
     return data;
   }
 };
-Print.postMessage(jsFunctions());
+jsFunctions();

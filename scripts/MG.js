@@ -14,4 +14,4 @@ const jsFunctions = () => {
     return document.documentElement.outerHTML;
   }
 };
-Print.postMessage(jsFunctions());
+jsFunctions();
