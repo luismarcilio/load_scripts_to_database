@@ -1,40 +1,28 @@
 const jsFunctions = () => {
   const accessKey = "$$ACCESS_KEY$$";
-  const url = document.URL;
-  const isSimplifiedNf = url.match("ConsultaPublicaCfe.aspx");
-  const isLoadedCompletedNf = url.match("ConsultaCupomFiscalEletronico.aspx");
-  const isEmitente =
-    url.match("DadosLotesEnviadosDadosCupom.aspx") &&
-    document
-      .querySelector("#conteudo_tabEmitente")
-      .getAttribute("style")
-      .split(";")[0]
-      .split(":")[1] !== "#969696";
-  const isProdutos =
-    url.match("DadosLotesEnviadosDadosCupom.aspx") &&
-    document
-      .querySelector("#conteudo_tabProdutoServico")
-      .getAttribute("style")
-      .split(";")[0]
-      .split(":")[1] !== "#969696";
+  const isSimplifiedNf = document.querySelector("#conteudo_btnDetalhe");
+  const isHome = document.querySelector("#conteudo_txtChaveAcesso");
+  const isCfe = document.querySelector("#conteudo_tabCfe")?.style?.backgroundColor == "rgb(200, 50, 50)";
+  const isEmitente = document.querySelector("#conteudo_tabEmitente")?.style?.backgroundColor == "rgb(200, 50, 50)";
+  const isProdutos = document.querySelector("#conteudo_tabProdutoServico")?.style?.backgroundColor == "rgb(200, 50, 50)";
   const data = {};
-  if (isSimplifiedNf) {
-    try {
+  if (isHome) {
       document.querySelector("#conteudo_txtChaveAcesso").value = accessKey;
-    } catch (error) {}
-    try {
-      document.querySelector("#conteudo_btnDetalhe").click();
-    } catch (error) {}
-  } else if (isLoadedCompletedNf) {
-    try {
-      document.querySelector("#conteudo_tabEmitente").click();
-    } catch (error) {}
+  } 
+  else if (isSimplifiedNf){
+    document.querySelector("#conteudo_btnDetalhe").click();
+  }
+  else if (isCfe) {
+    localStorage.removeItem("cfe");
+    localStorage.setItem("cfe", document.documentElement.outerHTML);
+    document.querySelector("#conteudo_tabEmitente").click();
   } else if (isEmitente) {
     localStorage.removeItem("emitente");
     localStorage.setItem("emitente", document.documentElement.outerHTML);
     document.querySelector("#conteudo_tabProdutoServico").click();
   } else if (isProdutos) {
     const data = {
+      cfe: localStorage.getItem("cfe"),
       emitente: localStorage.getItem("emitente"),
       produtos: document.documentElement.outerHTML,
     };
